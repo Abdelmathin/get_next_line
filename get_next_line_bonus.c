@@ -51,6 +51,14 @@ int	ft_load_line_from_buffer(char **line, char **buffers)
 	return (i);
 }
 
+char	*ft_clear_buffer(char *line, char **buffers)
+{
+	if (buffers[0])
+		free(buffers[0]);
+	buffers[0] = NULL;
+	return (line);
+}
+
 char	*ft_read_line_fd(char *line, char **buffers, int fd)
 {
 	int	buffer_len;
@@ -64,11 +72,7 @@ char	*ft_read_line_fd(char *line, char **buffers, int fd)
 			line = ft_linejoin(line, buffers[0], buffer_len);
 		ft_bzero(buffers[0], BUFFER_SIZE);
 		if (read(fd, buffers[0], BUFFER_SIZE) < 1)
-		{
-			free(buffers[0]);
-			buffers[0] = NULL;
-			return (line);
-		}
+			return (ft_clear_buffer(line, buffers));
 	}
 	return (NULL);
 }
@@ -79,8 +83,8 @@ char	*get_next_line(int fd)
 
 	if ((fd < 0) || (BUFFER_SIZE < 1))
 		return (NULL);
-	if ((buffers[fd * (FT_GNL_MAX > 1)] == NULL) && (read(fd, NULL, 0) < 0))
-		return (NULL);
+	if (read(fd, NULL, 0) < 0)
+		return (ft_clear_buffer(NULL, buffers + fd * (FT_GNL_MAX > 1)));
 	if (buffers[fd * (FT_GNL_MAX > 1)] == NULL)
 		buffers[fd * (FT_GNL_MAX > 1)] = ft_calloc(BUFFER_SIZE, sizeof(char));
 	if (buffers[fd * (FT_GNL_MAX > 1)] == NULL)
