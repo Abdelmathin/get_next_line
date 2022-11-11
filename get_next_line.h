@@ -22,6 +22,5 @@ void	ft_bzero(void *s, size_t n);
 size_t	ft_strlen(const char *s);
 void	*ft_memmove(void *s1, const void *s2, size_t n);
 void	*ft_calloc(size_t count, size_t size);
-char	*ft_strdup(const char *s);
 
 #endif//GET_NEXT_LINE_H

@@ -31,7 +31,7 @@ void	*ft_memmove(void *s1, const void *s2, size_t n)
 	size_t	i;
 
 	i = (s1 > s2) * (n - 1);
-	while (n > 0 && s1 != s2 && i < n)
+	while ((0 <= i) && (i < n) && (s1 != s2))
 	{
 		((char *)s1)[i] = ((char *)s2)[i];
 		i += (s1 < s2) - (s1 > s2);
@@ -47,16 +47,4 @@ void	*ft_calloc(size_t count, size_t size)
 	if (res)
 		ft_bzero(res, count * size);
 	return (res);
-}
-
-char	*ft_strdup(const char *s)
-{
-	char	*dup;
-	size_t	slen;
-
-	slen = ft_strlen(s);
-	dup = ft_calloc(slen, sizeof(char));
-	if (dup)
-		ft_memmove(dup, s, slen);
-	return (dup);
 }
