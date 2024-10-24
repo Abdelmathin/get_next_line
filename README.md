@@ -3,7 +3,7 @@
 **Get Next Line** is a C library designed to read a single line from a file descriptor. It simplifies reading lines from files and standard input, making it a perfect utility for projects that require efficient line-by-line processing.
 
 <p align="center">
-  <img style="position: absolute;left:0%;top:0%;" height="auto" width="100%" src ="docs/assets/img/banner.jpg">
+  <img style="position: absolute;left:0%;top:0%;" height="auto" width="100%" src ="docs/assets/img/code.png">
 </p>
 
 
@@ -56,7 +56,6 @@ int main() {
     close(fd);
     return 0;
 }
-
 ```
 
 ### Function Prototype
