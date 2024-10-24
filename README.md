@@ -64,3 +64,62 @@ char *get_next_line(int fd);
 
 - Returns:
 	- A pointer to the line read from the file. Returns `NULL` if there are no more lines or an error occurs.
+
+## 💡 Notes
+
+- Ensure you handle memory management properly by freeing the returned line after use.
+- The library is designed to work with files and standard input.
+
+## 📄 Example
+
+To illustrate the library in action, create a file named `example.txt` with the following content:
+
+```text
+Hello, World!
+This is a test.
+Get Next Line is easy to use.
+```
+
+Then run the example code provided above. You should see the lines printed one by one:
+
+```text
+Hello, World!
+This is a test.
+Get Next Line is easy to use.
+```
+
+## 🧪 Testing
+
+You can run tests to validate the functionality of the `get_next_line` library. Make sure to implement your test cases in a separate file. Here's an example:
+
+
+```c
+#include "get_next_line.h"
+#include <assert.h>
+#include <fcntl.h>
+
+void test_get_next_line() {
+    int fd = open("test.txt", O_RDONLY);
+    char *line;
+
+    line = get_next_line(fd);
+    assert(strcmp(line, "First line") == 0);
+    free(line);
+
+    line = get_next_line(fd);
+    assert(strcmp(line, "Second line") == 0);
+    free(line);
+
+    close(fd);
+}
+
+```
+
+## 📝 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+
+## 🤝 Contributing
+
+Contributions are welcome! If you have suggestions for improvements or want to report issues, please create a pull request or open an issue in this repository.
